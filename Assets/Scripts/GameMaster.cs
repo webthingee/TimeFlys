@@ -54,7 +54,7 @@ public class GameMaster : MonoBehaviour
     {
         if (_bool)
         {
-            _image.color = Color.white;
+            _image.color = Color.white; // use % and link to a timer
         }
         else
         {

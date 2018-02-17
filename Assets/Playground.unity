@@ -359,11 +359,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canKillAnyImage: {fileID: 1649263079}
   canKillAny: 0
-  canRapidFireImage: {fileID: 0}
-  canRapidFire: 0
-  canNonStopImage: {fileID: 0}
+  canNonStopImage: {fileID: 1966120837}
   canNonStop: 0
-  canPauseTimeImage: {fileID: 0}
+  canRapidFireImage: {fileID: 1520305300}
+  canRapidFire: 0
+  canPauseTimeImage: {fileID: 997633475}
   canPauseTime: 0
 --- !u!4 &436488379
 Transform:
