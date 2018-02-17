@@ -49,7 +49,10 @@ public class FiringCtrl : MonoBehaviour
 		
 		GameObject bullet = Instantiate(projectile, _position, _rotation);
 			bullet.name = "bullet";
-            bullet.GetComponent<Projectile>().projectileID = weaponID;
+            Projectile bp= bullet.GetComponent<Projectile>();
+            bp.projectileID = weaponID;
+            bp.canKillAny = GameMaster.instance.canKillAny;
+            bp.canNonStop = GameMaster.instance.canNonStop;
 
 		yield return new WaitForSeconds(_waitTime);
 		

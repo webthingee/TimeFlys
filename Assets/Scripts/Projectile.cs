@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour 
 {
-    public float projectileSpeed;
     public int projectileID = 1;
+
+    public float projectileSpeed = 22f;
 	public GameObject impactEffect;
+
+    public bool canKillAny = false;
+    public bool canNonStop = false;
 
     void Start()
     {
@@ -16,22 +20,31 @@ public class Projectile : MonoBehaviour
     void Update () 
 	{
 		transform.Translate(Vector3.up * projectileSpeed * Time.deltaTime);	
-        transform.GetChild(0).transform.Rotate(Vector3.forward * 500f * Time.deltaTime);
+        //transform.GetChild(0).transform.Rotate(Vector3.forward * 500f * Time.deltaTime);
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
 	{        
         if (other.tag == "Block")
         {
-            if (other.GetComponent<Block>().blockID == projectileID)
+            if (canKillAny) // Any Color
+            {
+                GameObject explode = Instantiate(impactEffect, other.transform.position, Quaternion.identity);
+                explode.GetComponent<SpriteRenderer>().color = GetIDColor(projectileID); 
+                Destroy(other.gameObject);
+            }
+            else if (other.GetComponent<Block>().blockID == projectileID) // Same Color
             {
                 GameObject explode = Instantiate(impactEffect, other.transform.position, Quaternion.identity);
                 explode.GetComponent<SpriteRenderer>().color = GetIDColor(projectileID);
                 Destroy(other.gameObject);
             }
-        }
+            
+            if (!canNonStop) // Destroy Bullet
+                Destroy(this.gameObject);
 
-        Destroy(this.gameObject);
+
+        }
         
         // Component damageableComponent = other.gameObject.GetComponent(typeof(IDamageable)); // nullable value
 		// if (other.tag != "Player")
