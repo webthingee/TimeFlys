@@ -18,6 +18,15 @@ public class FiringCtrl : MonoBehaviour
 
     void Update ()
     {
+        if (GameMaster.instance.canRapidFire)
+        {
+            rateOfFire = .25f;
+        }
+        else
+        {
+            rateOfFire = 1f;
+        }
+        
         if (leftGun != null)
         {
             if (Input.GetAxis("Horizontal") < 0 && canFire)
