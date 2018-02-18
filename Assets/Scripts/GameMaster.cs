@@ -24,14 +24,14 @@ public class GameMaster : MonoBehaviour
         public bool canNonStop = false;
         public float canNonStopCooldown = 10f;
 
-
     public Image canRapidFireImage;
         public bool canRapidFire = false;
         public float canRapidFireCooldown = 10f;
 
-
     public Image canPauseTimeImage;
         public bool canPauseTime = false;
+
+    public bool gameIsRunning;
 
     void Awake ()
     {
@@ -55,6 +55,7 @@ public class GameMaster : MonoBehaviour
     {
         Time.timeScale = 1f;
         gameOverCanvas.SetActive(false);
+        gameIsRunning = true;
 
         canKillAnyCooldown = timerDefault;
         canNonStopCooldown = timerDefault;
@@ -74,6 +75,12 @@ public class GameMaster : MonoBehaviour
         }
 
         scoreText.text = score.ToString();
+
+        if (gameIsRunning)
+        {
+            Time.timeScale += 0.0001f; //0.00001f;
+            Debug.Log(Time.timeScale);
+        }
     }
 
     public void AdjustImageValue (Image _image, bool _bool)
@@ -114,9 +121,14 @@ public class GameMaster : MonoBehaviour
 
     public void LoadGameOver ()
     {
-        Debug.Log("Game Over");
+        gameIsRunning = false;
         gameOverCanvas.SetActive(true);
         Time.timeScale = 0f;
+    }
+
+    public void RestartGame ()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void StartMainMenu ()

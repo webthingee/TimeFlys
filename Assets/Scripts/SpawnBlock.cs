@@ -23,7 +23,7 @@ public class SpawnBlock : MonoBehaviour
         Transform dropFrom = SelectDropPosition();
         
         int chanceOfPrize = Random.Range(1, 11);        
-        if (chanceOfPrize < 3)
+        if (chanceOfPrize == 1)
         {
             SpawnAPrize();
         }
@@ -50,4 +50,5 @@ public class SpawnBlock : MonoBehaviour
         
         Instantiate(dropPrize[i], dropFrom.position, Quaternion.identity, blockDropContainer);
     }
+
 }
