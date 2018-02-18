@@ -48,14 +48,15 @@ public class GameMaster : MonoBehaviour
             Destroy(gameObject);    
         
         //Sets this to not be destroyed when reloading scene
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
 	void Start ()
     {
         Time.timeScale = 1f;
+        
+        Debug.Log("Running");
         gameOverCanvas.SetActive(false);
-        gameIsRunning = true;
 
         canKillAnyCooldown = timerDefault;
         canNonStopCooldown = timerDefault;
@@ -128,7 +129,7 @@ public class GameMaster : MonoBehaviour
 
     public void RestartGame ()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("Playground");
     }
 
     public void StartMainMenu ()
