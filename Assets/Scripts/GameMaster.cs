@@ -6,8 +6,12 @@ using UnityEngine.UI;
 public class GameMaster : MonoBehaviour 
 {
     public static GameMaster instance = null;
+    
+    public Text scoreText;
+    public int score;
 
     public float timerDefault;
+    public float heightLimit;
 
     public Image canKillAnyImage;
         public bool canKillAny = false;
@@ -47,6 +51,9 @@ public class GameMaster : MonoBehaviour
 	void Start()
     {
         //CanKillAny (false);
+        canKillAnyCooldown = timerDefault;
+        canNonStopCooldown = timerDefault;
+        canRapidFireCooldown = timerDefault;
     }
 
 	void Update ()
@@ -55,6 +62,13 @@ public class GameMaster : MonoBehaviour
         AdjustImageValue(canRapidFireImage, canRapidFire);
         AdjustImageValue(canNonStopImage, canNonStop);
         AdjustImageValue(canPauseTimeImage, canPauseTime); // needs null
+
+        if (Input.GetKeyDown("b"))
+        {
+            FindObjectOfType<SpawnBlock>().SpawnAPrize();
+        }
+
+        scoreText.text = score.ToString();
     }
 
     public void AdjustImageValue (Image _image, bool _bool)
@@ -95,4 +109,14 @@ public class GameMaster : MonoBehaviour
             _image.color = Color.grey;
         }
     }
+
+    // public void DropPrize ()
+    // {
+    //     int prize = Random.Range(1,11);
+    //     Debug.Log(prize);
+    //     if (prize > 2)
+    //     {
+    //         GameMaster.instance.canRapidFire = true;
+    //     }
+    // }
 }

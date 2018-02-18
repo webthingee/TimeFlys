@@ -32,20 +32,36 @@ public class Projectile : MonoBehaviour
                 GameObject explode = Instantiate(impactEffect, other.transform.position, Quaternion.identity);
                 explode.GetComponent<SpriteRenderer>().color = GetIDColor(projectileID); 
                 Destroy(other.gameObject);
+
+                GameMaster.instance.score += 100;
+                //GameMaster.instance.DropPrize ();
             }
             else if (other.GetComponent<Block>().blockID == projectileID) // Same Color
             {
                 GameObject explode = Instantiate(impactEffect, other.transform.position, Quaternion.identity);
                 explode.GetComponent<SpriteRenderer>().color = GetIDColor(projectileID);
                 Destroy(other.gameObject);
+
+                GameMaster.instance.score += 100;
+                //GameMaster.instance.DropPrize ();
             }
             
             if (!canNonStop) // Destroy Bullet
                 Destroy(this.gameObject);
-
-
         }
-        
+
+        if (other.tag == "Prize")
+        {
+            other.GetComponent<PrizeBox>().GetPrize();
+            
+            GameObject explode = Instantiate(impactEffect, other.transform.position, Quaternion.identity);
+            explode.GetComponent<SpriteRenderer>().color = Color.gray;
+            
+            GameMaster.instance.score += 100;
+
+            if (!canNonStop) // Destroy Bullet
+                Destroy(this.gameObject);
+        }
         // Component damageableComponent = other.gameObject.GetComponent(typeof(IDamageable)); // nullable value
 		// if (other.tag != "Player")
 		// {

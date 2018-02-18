@@ -11,6 +11,19 @@ public class Block : MonoBehaviour
 	    Colorizer(blockID);
 	}
 	
+    void Update ()
+    {
+
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (transform.position.y > GameMaster.instance.heightLimit)
+        {
+            Debug.Log("Game Over");
+        }   
+    }
+
     void Colorizer (int _ID)
     {
         switch (_ID)

@@ -5,9 +5,11 @@ using UnityEngine;
 public class SpawnBlock : MonoBehaviour 
 {
     public GameObject blockPrefab;
+    public Transform blockDropContainer;
     public float minDropInterval = 2f;
     public float maxDropInterval = 5f;
     public Transform[] dropPositions;
+    public GameObject[] dropPrize;
 	
 	void Start()
     {
@@ -19,12 +21,19 @@ public class SpawnBlock : MonoBehaviour
     {
         float dropTime = Random.Range(minDropInterval, maxDropInterval);
         Transform dropFrom = SelectDropPosition();
-
+        
+        int chanceOfPrize = Random.Range(1, 11);        
+        if (chanceOfPrize < 3)
+        {
+            SpawnAPrize();
+        }
+        else
+        {
+            GameObject block = Instantiate(blockPrefab, dropFrom.position, Quaternion.identity, blockDropContainer);
+            block.GetComponent<Block>().blockID = Random.Range(1,4);
+        }
+        
         yield return new WaitForSeconds(_wait);
-        
-        GameObject block = Instantiate(blockPrefab, dropFrom.position, Quaternion.identity);
-        block.GetComponent<Block>().blockID = Random.Range(1,4);
-        
         StartCoroutine(DropBlock(dropTime));
     }
 
@@ -32,5 +41,13 @@ public class SpawnBlock : MonoBehaviour
     {
         int i = Random.Range(0, dropPositions.Length);
         return dropPositions[i];
+    }
+
+    public void SpawnAPrize ()
+    {
+        int i = Random.Range(0, dropPrize.Length);
+        Transform dropFrom = SelectDropPosition();
+        
+        GameObject block = Instantiate(dropPrize[i], dropFrom.position, Quaternion.identity, blockDropContainer);
     }
 }
