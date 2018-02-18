@@ -11,6 +11,13 @@ public class FiringCtrl : MonoBehaviour
 	public float rateOfFire = 1f;
     public bool canFire = true;
 
+    AudioSource audioSource;
+
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     void Start()
     {
         StartCoroutine(ChangeID(10f));
@@ -31,6 +38,7 @@ public class FiringCtrl : MonoBehaviour
         {
             if (Input.GetAxis("Horizontal") < 0 && canFire)
             {
+                audioSource.Play();
                 StartCoroutine(FireBullets(transform.right, leftGun, rateOfFire));
             }
             Colorizer(weaponID, leftGun);
@@ -40,6 +48,7 @@ public class FiringCtrl : MonoBehaviour
         {
             if (Input.GetAxis("Horizontal") > 0 && canFire)
             {
+                audioSource.Play();
                 StartCoroutine(FireBullets(-transform.right, rightGun, rateOfFire));
             }
             Colorizer(weaponID, rightGun);

@@ -5,10 +5,12 @@ using UnityEngine;
 public class Block : MonoBehaviour 
 {
     public int blockID = 1;
+    AudioSource blockAudio;
     
 	void Start () 
     {
 	    Colorizer(blockID);
+        blockAudio = GetComponent<AudioSource>();
 	}
 	
     void Update ()
@@ -18,10 +20,14 @@ public class Block : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        
+        blockAudio.Play();
+
         if (transform.position.y > GameMaster.instance.heightLimit)
         {
-            Debug.Log("Game Over");
-        }   
+            GameMaster.instance.LoadGameOver();
+        }
+
     }
 
     void Colorizer (int _ID)

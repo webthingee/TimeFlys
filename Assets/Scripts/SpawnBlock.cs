@@ -48,6 +48,6 @@ public class SpawnBlock : MonoBehaviour
         int i = Random.Range(0, dropPrize.Length);
         Transform dropFrom = SelectDropPosition();
         
-        GameObject block = Instantiate(dropPrize[i], dropFrom.position, Quaternion.identity, blockDropContainer);
+        Instantiate(dropPrize[i], dropFrom.position, Quaternion.identity, blockDropContainer);
     }
 }

@@ -14,17 +14,21 @@ public class Projectile : MonoBehaviour
 
     void Start()
     {
-        Colorizer(projectileID);    
+        Colorizer(projectileID);
     }
 
     void Update () 
 	{
 		transform.Translate(Vector3.up * projectileSpeed * Time.deltaTime);	
-        //transform.GetChild(0).transform.Rotate(Vector3.forward * 500f * Time.deltaTime);
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
 	{        
+        // if (other.tag == "Block" || other.tag == "Prize")
+        // {
+        //     AudioController.instance.FlyDeathSound();
+        // }
+        
         if (other.tag == "Block")
         {
             if (canKillAny) // Any Color
@@ -34,7 +38,6 @@ public class Projectile : MonoBehaviour
                 Destroy(other.gameObject);
 
                 GameMaster.instance.score += 100;
-                //GameMaster.instance.DropPrize ();
             }
             else if (other.GetComponent<Block>().blockID == projectileID) // Same Color
             {
@@ -43,9 +46,8 @@ public class Projectile : MonoBehaviour
                 Destroy(other.gameObject);
 
                 GameMaster.instance.score += 100;
-                //GameMaster.instance.DropPrize ();
             }
-            
+
             if (!canNonStop) // Destroy Bullet
                 Destroy(this.gameObject);
         }
@@ -72,28 +74,6 @@ public class Projectile : MonoBehaviour
 		// 	//Impact();
 		// }
 	}
-
-    // void OnCollisionEnter2D(Collision2D other)
-    // {
-    //     Debug.Log(other.collider.name);
-        
-    //     if (other.collider.tag == "Block")
-    //     {
-    //         if (other.collider.GetComponent<BlockDrop>().blockID == projectileID)
-    //         {
-    //             Destroy(other.gameObject);
-    //         }
-    //     }
-
-    //     Destroy(this.gameObject);
-    // }
-
-	// void Impact()
-	// {
-	// 	var impactPoint = transform.position;
-	// 	Instantiate(impactEffect, impactPoint, impactEffect.transform.rotation);
-	// 	Destroy(this.gameObject);
-	// }
 
     void Colorizer (int _ID)
     {

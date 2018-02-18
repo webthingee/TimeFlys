@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour 
 {
@@ -12,6 +13,8 @@ public class GameMaster : MonoBehaviour
 
     public float timerDefault;
     public float heightLimit;
+
+    public GameObject gameOverCanvas;
 
     public Image canKillAnyImage;
         public bool canKillAny = false;
@@ -30,7 +33,7 @@ public class GameMaster : MonoBehaviour
     public Image canPauseTimeImage;
         public bool canPauseTime = false;
 
-    void Awake()
+    void Awake ()
     {
         //Check if instance already exists
         if (instance == null)
@@ -48,9 +51,11 @@ public class GameMaster : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-	void Start()
+	void Start ()
     {
-        //CanKillAny (false);
+        Time.timeScale = 1f;
+        gameOverCanvas.SetActive(false);
+
         canKillAnyCooldown = timerDefault;
         canNonStopCooldown = timerDefault;
         canRapidFireCooldown = timerDefault;
@@ -79,7 +84,6 @@ public class GameMaster : MonoBehaviour
             
             if (canKillAnyCooldown >= 0 && canKillAny) {
                 canKillAnyCooldown -= Time.deltaTime;
-                Debug.Log(canKillAnyCooldown);
             }
             else {
                 canKillAny = false;
@@ -88,7 +92,6 @@ public class GameMaster : MonoBehaviour
 
             if (canNonStopCooldown >= 0 && canNonStop) {
                 canNonStopCooldown -= Time.deltaTime;
-                Debug.Log(canNonStopCooldown);
             }
             else {
                 canNonStop = false;
@@ -97,7 +100,6 @@ public class GameMaster : MonoBehaviour
 
             if (canRapidFireCooldown >= 0 && canRapidFire) {
                 canRapidFireCooldown -= Time.deltaTime;
-                Debug.Log(canRapidFireCooldown);
             }
             else {
                 canRapidFire = false;
@@ -110,13 +112,15 @@ public class GameMaster : MonoBehaviour
         }
     }
 
-    // public void DropPrize ()
-    // {
-    //     int prize = Random.Range(1,11);
-    //     Debug.Log(prize);
-    //     if (prize > 2)
-    //     {
-    //         GameMaster.instance.canRapidFire = true;
-    //     }
-    // }
+    public void LoadGameOver ()
+    {
+        Debug.Log("Game Over");
+        gameOverCanvas.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void StartMainMenu ()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
 }
