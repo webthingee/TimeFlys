@@ -54,8 +54,6 @@ public class GameMaster : MonoBehaviour
 	void Start ()
     {
         Time.timeScale = 1f;
-        
-        Debug.Log("Running");
         gameOverCanvas.SetActive(false);
 
         canKillAnyCooldown = timerDefault;
