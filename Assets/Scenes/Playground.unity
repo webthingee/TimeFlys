@@ -2830,7 +2830,6 @@ GameObject:
   - component: {fileID: 1212518250}
   - component: {fileID: 1212518249}
   - component: {fileID: 1212518248}
-  - component: {fileID: 1212518247}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -2838,17 +2837,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1212518247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1212518246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8eaa4eab45fe4492c8f50506fcdf0f7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1212518248
 MonoBehaviour:
   m_ObjectHideFlags: 0

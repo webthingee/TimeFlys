@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WeaponMove : MonoBehaviour 
 {
@@ -33,26 +31,6 @@ public class WeaponMove : MonoBehaviour
         if (moveSpeed >= 10f) { moveSpeed = 10f; }
         if (moveSpeed <= 0f) { moveSpeed = 1f; }
 
-        // if (leftGun)
-        // {
-        //     if (Input.GetKey("a"))
-        //     {
-        //         weapon.transform.Translate(new Vector2 (-Input.GetAxis("Vertical"), 0) * moveSpeed * Time.deltaTime);
-        //         //weapon.transform.position = Vector2.MoveTowards(weapon.transform.position, goalPos, moveSpeed * Time.deltaTime);
-        //         // @TODO light up, show can move
-        //     }
-        // }
-
-        // if (!leftGun)
-        // {
-        //     if (Input.GetKey("d"))
-        //     {
-        //         weapon.transform.Translate(new Vector2 (Input.GetAxis("Vertical"), 0) * moveSpeed * Time.deltaTime);
-        //         //weapon.transform.position = Vector2.MoveTowards(weapon.transform.position, goalPos, moveSpeed * Time.deltaTime);
-        //     }
-        // }
-        
         weapon.transform.position = Vector2.MoveTowards(weapon.transform.position, goalPos, moveSpeed * Time.deltaTime);
-
 	}
 }

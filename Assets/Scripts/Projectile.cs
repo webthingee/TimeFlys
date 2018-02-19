@@ -1,14 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Projectile : MonoBehaviour 
 {
     public int projectileID = 1;
-
     public float projectileSpeed = 22f;
 	public GameObject impactEffect;
-
     public bool canKillAny = false;
     public bool canNonStop = false;
 
@@ -59,15 +55,6 @@ public class Projectile : MonoBehaviour
             if (!canNonStop) // Destroy Bullet
                 Destroy(this.gameObject);
         }
-        // Component damageableComponent = other.gameObject.GetComponent(typeof(IDamageable)); // nullable value
-		// if (other.tag != "Player")
-		// {
-		// 	if (damageableComponent)
-		// 	{
-		// 		(damageableComponent as IDamageable).TakeDamage();
-		// 	}
-		// 	//Impact();
-		// }
 	}
 
     void Colorizer (int _ID)
