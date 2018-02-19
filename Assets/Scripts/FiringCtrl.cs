@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FiringCtrl : MonoBehaviour 
@@ -13,7 +12,7 @@ public class FiringCtrl : MonoBehaviour
 
     AudioSource audioSource;
 
-    void Awake()
+    void Awake ()
     {
         audioSource = GetComponent<AudioSource>();
     }
@@ -76,13 +75,6 @@ public class FiringCtrl : MonoBehaviour
 		
 		canFire = true;
 	}
-
-    // IEnumerator ChangeID (float _waitTime)
-    // {
-    //     weaponID = Random.Range(1,4);
-    //     yield return new WaitForSeconds(_waitTime);
-    //     StartCoroutine(ChangeID(_waitTime));
-    // }
 
     void Colorizer (int _ID, GameObject _gun)
     {

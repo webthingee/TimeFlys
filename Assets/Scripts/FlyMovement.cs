@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Animations;
 
 public class FlyMovement : MonoBehaviour 
@@ -20,7 +18,6 @@ public class FlyMovement : MonoBehaviour
 	void Update () 
     {
         animator.SetFloat("AnimSpeed", animSpeed);
-        //transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
         RandomFlyMovement();
 	}
 

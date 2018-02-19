@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations;
 
 public class CloudControl : MonoBehaviour 
 {
@@ -11,6 +10,7 @@ public class CloudControl : MonoBehaviour
     {
         moveSpeed = Random.Range(.5f, 2f);
 
+        // spawn clouds behind moutians 50% of the time
         int rand = Random.Range(1,101);
         if (rand % 2 == 0) 
         {

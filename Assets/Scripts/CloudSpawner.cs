@@ -1,21 +1,19 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CloudSpawner : MonoBehaviour 
 {
     public GameObject[] clouds;
-
     public float minDropInterval = 2f;
     public float maxDropInterval = 5f;
 	
 	void Start()
     {
         float sendCloudTime = Random.Range(minDropInterval, maxDropInterval);
-        StartCoroutine(DropBlock(sendCloudTime));
+        StartCoroutine(SendCloud(sendCloudTime));
     }   
 
-    IEnumerator DropBlock (float _wait)
+    IEnumerator SendCloud (float _wait)
     {
         Vector2 sendCloudFrom = SelectPosition();
 
@@ -25,7 +23,7 @@ public class CloudSpawner : MonoBehaviour
         yield return new WaitForSeconds(_wait);
         
         float sendCloudTime = Random.Range(minDropInterval, maxDropInterval);
-        StartCoroutine(DropBlock(sendCloudTime));
+        StartCoroutine(SendCloud(sendCloudTime));
     }
 
     Vector2 SelectPosition ()

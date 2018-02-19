@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Block : MonoBehaviour 
 {
@@ -12,22 +10,15 @@ public class Block : MonoBehaviour
 	    Colorizer(blockID);
         blockAudio = GetComponent<AudioSource>();
 	}
-	
-    void Update ()
-    {
-
-    }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        
         blockAudio.Play();
 
         if (transform.position.y > GameMaster.instance.heightLimit)
         {
             GameMaster.instance.LoadGameOver();
         }
-
     }
 
     void Colorizer (int _ID)
