@@ -19,6 +19,7 @@ public class GameMaster : MonoBehaviour
     public Slider weaponChangeTimeSlider;
 
     public GameObject gameOverCanvas;
+    public GameObject pauseCanvas;
 
     public Image canKillAnyImage;
     private bool canKillAny = false;
@@ -45,6 +46,7 @@ public class GameMaster : MonoBehaviour
     public FiringCtrl rightGun;
 
     public bool gameIsRunning;
+    private float currentTimeScale;
 
     public bool CanKillAny
     {
@@ -110,6 +112,7 @@ public class GameMaster : MonoBehaviour
     {
         Time.timeScale = 1f;
         gameOverCanvas.SetActive(false);
+        pauseCanvas.SetActive(false);
         gameIsRunning = true;
 
         canKillAnyCooldown = timerDefault;
@@ -129,6 +132,11 @@ public class GameMaster : MonoBehaviour
         if (Input.GetKeyDown("b"))
         {
             FindObjectOfType<SpawnBlock>().SpawnAPrize();
+        }
+
+        if (Input.GetKeyDown("p") || Input.GetKeyDown("q"))
+        {
+            PauseGame();
         }
 
         scoreText.text = score.ToString();
@@ -211,5 +219,18 @@ public class GameMaster : MonoBehaviour
     public void StartMainMenu ()
     {
         SceneManager.LoadScene("Main Menu");
+    }
+
+    public void PauseGame ()
+    {
+        currentTimeScale = Time.timeScale;
+        Time.timeScale = 0f;
+        pauseCanvas.SetActive(true);
+    }
+
+    public void UnPauseGame ()
+    {
+        Time.timeScale = currentTimeScale;
+        pauseCanvas.SetActive(false);
     }
 }

@@ -1427,7 +1427,9 @@ MonoBehaviour:
 
     Up = Speed Up Guns
 
-    Down = Slow Down Guns'
+    Down = Slow Down Guns
+
+    p = Pause      ||      q = Quit'
 --- !u!222 &1246120367
 CanvasRenderer:
   m_ObjectHideFlags: 0
