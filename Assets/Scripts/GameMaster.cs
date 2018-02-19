@@ -14,22 +14,35 @@ public class GameMaster : MonoBehaviour
     public float timerDefault;
     public float heightLimit;
 
+    public float weaponChangeTime = 10f;
+    public float weaponChangeTimeCooldown;
+    public Slider weaponChangeTimeSlider;
+
     public GameObject gameOverCanvas;
 
     public Image canKillAnyImage;
         public bool canKillAny = false;
         public float canKillAnyCooldown = 10f;
+        public Slider canKillAnySlider;
+
     
     public Image canNonStopImage;
         public bool canNonStop = false;
         public float canNonStopCooldown = 10f;
+        public Slider canNonStopSlider;
+
 
     public Image canRapidFireImage;
         public bool canRapidFire = false;
         public float canRapidFireCooldown = 10f;
+        public Slider canRapidFireSlider;
+
 
     public Image canPauseTimeImage;
         public bool canPauseTime = false;
+
+    public FiringCtrl leftGun;
+    public FiringCtrl rightGun;
 
     public bool gameIsRunning;
 
@@ -55,10 +68,13 @@ public class GameMaster : MonoBehaviour
     {
         Time.timeScale = 1f;
         gameOverCanvas.SetActive(false);
+        gameIsRunning = true;
 
         canKillAnyCooldown = timerDefault;
         canNonStopCooldown = timerDefault;
         canRapidFireCooldown = timerDefault;
+
+        weaponChangeTimeCooldown = weaponChangeTime;
     }
 
 	void Update ()
@@ -78,7 +94,13 @@ public class GameMaster : MonoBehaviour
         if (gameIsRunning)
         {
             Time.timeScale += 0.0001f; //0.00001f;
-            Debug.Log(Time.timeScale);
+
+            WeaponChangeTimer();
+
+            weaponChangeTimeSlider.value = weaponChangeTimeCooldown;
+            canKillAnySlider.value = canKillAnyCooldown;
+            canNonStopSlider.value = canNonStopCooldown;
+            canRapidFireSlider.value = canRapidFireCooldown;
         }
     }
 
@@ -115,6 +137,20 @@ public class GameMaster : MonoBehaviour
         else
         {
             _image.color = Color.grey;
+        }
+    }
+
+    public void WeaponChangeTimer ()
+    {
+        if (weaponChangeTimeCooldown >= 0) 
+        {        
+            weaponChangeTimeCooldown -= Time.deltaTime;
+        }
+        else 
+        {
+            leftGun.weaponID = Random.Range(1,4);
+            rightGun.weaponID = Random.Range(1,4);        
+            weaponChangeTimeCooldown = weaponChangeTime; 
         }
     }
 

@@ -20,7 +20,7 @@ public class FiringCtrl : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(ChangeID(10f));
+        weaponID = Random.Range(1,4);    
     }
 
     void Update ()
@@ -77,12 +77,12 @@ public class FiringCtrl : MonoBehaviour
 		canFire = true;
 	}
 
-    IEnumerator ChangeID (float _waitTime)
-    {
-        weaponID = Random.Range(1,4);
-        yield return new WaitForSeconds(_waitTime);
-        StartCoroutine(ChangeID(10f));
-    }
+    // IEnumerator ChangeID (float _waitTime)
+    // {
+    //     weaponID = Random.Range(1,4);
+    //     yield return new WaitForSeconds(_waitTime);
+    //     StartCoroutine(ChangeID(_waitTime));
+    // }
 
     void Colorizer (int _ID, GameObject _gun)
     {
