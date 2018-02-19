@@ -8,46 +8,47 @@ public class GameMaster : MonoBehaviour
 {
     public static GameMaster instance = null;
     
+    #region Props  
     public Text scoreText;
     public int score;
+    public bool gameIsRunning;
+    private float currentTimeScale;
 
-    public float timerDefault;
+    [Header("Guns")]
+    public FiringCtrl leftGun;
+    public FiringCtrl rightGun;    
     public float heightLimit;
-
     public float weaponChangeTime = 10f;
     public float weaponChangeTimeCooldown;
     public Slider weaponChangeTimeSlider;
 
+    [Header("Canvas Overlays")]
     public GameObject gameOverCanvas;
     public GameObject pauseCanvas;
 
+    [Header("Special Weapons")]
+    public float timerDefault;
+
+    [Header("Kill Any")]
     public Image canKillAnyImage;
     private bool canKillAny = false;
     public float canKillAnyCooldown = 10f;
-        public Slider canKillAnySlider;
+    public Slider canKillAnySlider;
 
-    
+    [Header("Non Stop")]
     public Image canNonStopImage;
     private bool canNonStop = false;
     public float canNonStopCooldown = 10f;
-        public Slider canNonStopSlider;
+    public Slider canNonStopSlider;
 
-
+    [Header("Rapid Fire")]
     public Image canRapidFireImage;
     private bool canRapidFire = false;
     public float canRapidFireCooldown = 10f;
-        public Slider canRapidFireSlider;
+    public Slider canRapidFireSlider;
+    #endregion
 
-
-    public Image canPauseTimeImage;
-        public bool canPauseTime = false;
-
-    public FiringCtrl leftGun;
-    public FiringCtrl rightGun;
-
-    public bool gameIsRunning;
-    private float currentTimeScale;
-
+    #region Getters and Setters
     public bool CanKillAny
     {
         get
@@ -90,6 +91,8 @@ public class GameMaster : MonoBehaviour
         }
     }
 
+    #endregion
+
     void Awake ()
     {
         //Check if instance already exists
@@ -127,7 +130,6 @@ public class GameMaster : MonoBehaviour
         AdjustImageValue(canKillAnyImage, CanKillAny);
         AdjustImageValue(canRapidFireImage, CanRapidFire);
         AdjustImageValue(canNonStopImage, CanNonStop);
-        AdjustImageValue(canPauseTimeImage, canPauseTime); // needs null
 
         if (Input.GetKeyDown("b"))
         {
