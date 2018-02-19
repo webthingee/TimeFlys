@@ -25,7 +25,7 @@ public class FiringCtrl : MonoBehaviour
 
     void Update ()
     {
-        if (GameMaster.instance.canRapidFire)
+        if (GameMaster.instance.CanRapidFire)
         {
             rateOfFire = .25f;
         }
@@ -69,8 +69,8 @@ public class FiringCtrl : MonoBehaviour
 			bullet.name = "bullet";
             Projectile bp= bullet.GetComponent<Projectile>();
             bp.projectileID = weaponID;
-            bp.canKillAny = GameMaster.instance.canKillAny;
-            bp.canNonStop = GameMaster.instance.canNonStop;
+            bp.canKillAny = GameMaster.instance.CanKillAny;
+            bp.canNonStop = GameMaster.instance.CanNonStop;
 
 		yield return new WaitForSeconds(_waitTime);
 		

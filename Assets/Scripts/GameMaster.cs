@@ -21,20 +21,20 @@ public class GameMaster : MonoBehaviour
     public GameObject gameOverCanvas;
 
     public Image canKillAnyImage;
-        public bool canKillAny = false;
-        public float canKillAnyCooldown = 10f;
+    private bool canKillAny = false;
+    public float canKillAnyCooldown = 10f;
         public Slider canKillAnySlider;
 
     
     public Image canNonStopImage;
-        public bool canNonStop = false;
-        public float canNonStopCooldown = 10f;
+    private bool canNonStop = false;
+    public float canNonStopCooldown = 10f;
         public Slider canNonStopSlider;
 
 
     public Image canRapidFireImage;
-        public bool canRapidFire = false;
-        public float canRapidFireCooldown = 10f;
+    private bool canRapidFire = false;
+    public float canRapidFireCooldown = 10f;
         public Slider canRapidFireSlider;
 
 
@@ -45,6 +45,48 @@ public class GameMaster : MonoBehaviour
     public FiringCtrl rightGun;
 
     public bool gameIsRunning;
+
+    public bool CanKillAny
+    {
+        get
+        {
+            return canKillAny;
+        }
+
+        set
+        {
+            canKillAny = value;
+            canKillAnyCooldown = timerDefault;
+        }
+    }
+
+    public bool CanNonStop
+    {
+        get
+        {
+            return canNonStop;
+        }
+
+        set
+        {
+            canNonStop = value;
+            canNonStopCooldown = timerDefault;
+        }
+    }
+
+    public bool CanRapidFire
+    {
+        get
+        {
+            return canRapidFire;
+        }
+
+        set
+        {
+            canRapidFire = value;
+            canRapidFireCooldown = timerDefault;
+        }
+    }
 
     void Awake ()
     {
@@ -79,9 +121,9 @@ public class GameMaster : MonoBehaviour
 
 	void Update ()
     {	
-        AdjustImageValue(canKillAnyImage, canKillAny);
-        AdjustImageValue(canRapidFireImage, canRapidFire);
-        AdjustImageValue(canNonStopImage, canNonStop);
+        AdjustImageValue(canKillAnyImage, CanKillAny);
+        AdjustImageValue(canRapidFireImage, CanRapidFire);
+        AdjustImageValue(canNonStopImage, CanNonStop);
         AdjustImageValue(canPauseTimeImage, canPauseTime); // needs null
 
         if (Input.GetKeyDown("b"))
@@ -110,27 +152,27 @@ public class GameMaster : MonoBehaviour
         {
             _image.color = Color.white; // use % and link to a timer
             
-            if (canKillAnyCooldown >= 0 && canKillAny) {
+            if (canKillAnyCooldown >= 0 && CanKillAny) {
                 canKillAnyCooldown -= Time.deltaTime;
             }
             else {
-                canKillAny = false;
+                CanKillAny = false;
                 canKillAnyCooldown = timerDefault; 
             }
 
-            if (canNonStopCooldown >= 0 && canNonStop) {
+            if (canNonStopCooldown >= 0 && CanNonStop) {
                 canNonStopCooldown -= Time.deltaTime;
             }
             else {
-                canNonStop = false;
+                CanNonStop = false;
                 canNonStopCooldown = timerDefault; 
             }
 
-            if (canRapidFireCooldown >= 0 && canRapidFire) {
+            if (canRapidFireCooldown >= 0 && CanRapidFire) {
                 canRapidFireCooldown -= Time.deltaTime;
             }
             else {
-                canRapidFire = false;
+                CanRapidFire = false;
                 canRapidFireCooldown = timerDefault; 
             }
         }

@@ -28,13 +28,13 @@ public class PrizeBox : MonoBehaviour
    public void GetPrize ()
    {
         if (killAny)
-            GameMaster.instance.canKillAny = true;
+            GameMaster.instance.CanKillAny = true;
        
         if (nonStop)
-            GameMaster.instance.canNonStop = true;
+            GameMaster.instance.CanNonStop = true;
 
         if (rapidFire)
-            GameMaster.instance.canRapidFire = true;
+            GameMaster.instance.CanRapidFire = true;
 
         Destroy(this.gameObject);
    }

@@ -23,12 +23,7 @@ public class Projectile : MonoBehaviour
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
-	{        
-        // if (other.tag == "Block" || other.tag == "Prize")
-        // {
-        //     AudioController.instance.FlyDeathSound();
-        // }
-        
+	{
         if (other.tag == "Block")
         {
             if (canKillAny) // Any Color
