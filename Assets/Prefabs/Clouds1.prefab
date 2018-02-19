@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4499472432165490}
   - component: {fileID: 212160354628297518}
+  - component: {fileID: 114267984691780382}
   m_Layer: 0
   m_Name: Clouds1
   m_TagString: Untagged
@@ -40,6 +41,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114267984691780382
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1313658783979646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03120127e030d413d885f1aa532d28d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 3
 --- !u!212 &212160354628297518
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -75,7 +88,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bf7ac92e4d639479383c7ec0404a8846, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6779844, g: 0.73213816, b: 0.83823526, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
